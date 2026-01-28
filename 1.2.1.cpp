@@ -5,25 +5,20 @@ struct BankAccount {
 private:
 	int accountNumber{};
 	std::string nameOfOwner{};
-	int balance{0};
+	double balance{ 0.0 };
 public:
 	void setAccNumber(int number) { accountNumber = number; };
-	int getAccNumber() { return accountNumber; };
+	int getAccNumber() const { return accountNumber; };
 
 	void setName(std::string setName) { nameOfOwner = setName; };
-	std::string getName() { return nameOfOwner; };
-	
-	void setBalance( int balance ) { this->balance = balance; };
-	void upBalance( int upBalance ) { balance = balance + upBalance; };
-	void downBalance(int downBalance) { balance = balance - downBalance; };
-	int getBalance() { return balance; };
-	int changeBalance(int changeBalance)
-	{
-		balance = changeBalance;
-		return balance;
-	}
+	std::string getName() const { return nameOfOwner; };
 
-	void getAllInfo() {
+	void setBalance(double balance) { this->balance = balance; };
+	void upBalance(double upBalance) { balance = balance + upBalance; };
+	void downBalance(double downBalance) { balance = balance - downBalance; };
+	double getBalance() const { return balance; };
+
+	void getAllInfo() const {
 		std::cout << "Account number: " << accountNumber << std::endl;
 		std::cout << "Owner`s name: " << nameOfOwner << std::endl;
 		std::cout << "Balance: " << balance << std::endl;
@@ -52,14 +47,14 @@ int main() {
 
 		std::cout << "Enter your action: ";
 		std::cin >> action;
-		int amount;
+		double amount;
 		if (action <= 0 || action >= 4) {
 			std::cout << "Error... Incorrect variant... Try again!\n";
 		}
 
 		switch (action) {
 		case 1:
-			std::cout << "Enter the amont: ";
+			std::cout << "Enter the amount: ";
 			std::cin >> amount;
 			if (amount > 0) {
 				person1.upBalance(amount);
@@ -75,14 +70,14 @@ int main() {
 			std::cout << "Enter the amont: ";
 			std::cin >> amount;
 			if (amount > 0) {
-				if (person1.getBalance() > amount) {
+				if (person1.getBalance() >= amount) {
 					person1.downBalance(amount);
 					std::cout << "\nThe money was successfully withdrawn. Account fragment information has been updated.\n";
 					person1.getAllInfo();
 					std::cout << "Thank you for using our services =) \n";
 				}
 				else {
-					std::cout << "Insufficients funds.\n";
+					std::cout << "Insufficient funds.\n";
 				}
 
 			}
