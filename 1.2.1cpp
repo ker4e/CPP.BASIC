@@ -45,7 +45,7 @@ int main() {
 	int action{};
 
 	do {
-		std::cout << "What do u want to do?\n";
+		std::cout << "\nWhat do u want to do?\n";
 		std::cout << "1. Top up balance.\n";
 		std::cout << "2. Withdraw money.\n";
 		std::cout << "3. Exit\n\n";
