@@ -1,0 +1,100 @@
+#include <iostream>
+#include <string>
+
+struct BankAccount {
+private:
+	int accountNumber{};
+	std::string nameOfOwner{};
+	int balance{0};
+public:
+	void setAccNumber(int number) { accountNumber = number; };
+	int getAccNumber() { return accountNumber; };
+
+	void setName(std::string setName) { nameOfOwner = setName; };
+	std::string getName() { return nameOfOwner; };
+	
+	void setBalance( int balance ) { this->balance = balance; };
+	void upBalance( int upBalance ) { balance = balance + upBalance; };
+	void downBalance(int downBalance) { balance = balance - downBalance; };
+	int getBalance() { return balance; };
+	int changeBalance(int changeBalance)
+	{
+		balance = changeBalance;
+		return balance;
+	}
+
+	void getAllInfo() {
+		std::cout << "Account number: " << accountNumber << std::endl;
+		std::cout << "Owner`s name: " << nameOfOwner << std::endl;
+		std::cout << "Balance: " << balance << std::endl;
+	}
+};
+
+int main() {
+
+	BankAccount person1{};
+	std::string name{};
+	std::cout << "Enter your name: ";
+	std::getline(std::cin >> std::ws, name);
+	person1.setName(name);
+	std::cout << "Hello, " << person1.getName() << ". We are glad to see you!\n";
+	person1.setAccNumber(40005234);
+	std::cout << "Your`s account number is " << person1.getAccNumber() << std::endl;
+	person1.setBalance(5000);
+	std::cout << "Your balance: " << person1.getBalance() << std::endl;
+	int action{};
+
+	do {
+		std::cout << "What do u want to do?\n";
+		std::cout << "1. Top up balance.\n";
+		std::cout << "2. Withdraw money.\n";
+		std::cout << "3. Exit\n\n";
+
+		std::cout << "Enter your action: ";
+		std::cin >> action;
+		int amount;
+		if (action <= 0 || action >= 4) {
+			std::cout << "Error... Incorrect variant... Try again!\n";
+		}
+
+		switch (action) {
+		case 1:
+			std::cout << "Enter the amont: ";
+			std::cin >> amount;
+			if (amount > 0) {
+				person1.upBalance(amount);
+				std::cout << "\nYour balance has been successfully topped up. Account fragment information has been updated.\n";
+				person1.getAllInfo();
+				std::cout << "Thank you for using our services =)\n ";
+			}
+			else {
+				std::cout << "Please, enter a number greater than 0.\n";
+			}
+			break;
+		case 2:
+			std::cout << "Enter the amont: ";
+			std::cin >> amount;
+			if (amount > 0) {
+				if (person1.getBalance() > amount) {
+					person1.downBalance(amount);
+					std::cout << "\nThe money was successfully withdrawn. Account fragment information has been updated.\n";
+					person1.getAllInfo();
+					std::cout << "Thank you for using our services =) \n";
+				}
+				else {
+					std::cout << "Insufficients funds.\n";
+				}
+
+			}
+			else {
+				std::cout << "Please, enter a number greater than 0.\n";
+			}
+			break;
+		case 3:
+			std::cout << "Thank you for using our services. Goodbye! =)\n";
+			break;
+		}
+	} while (action != 3);
+
+	return EXIT_SUCCESS;
+}
