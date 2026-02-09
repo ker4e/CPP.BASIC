@@ -31,5 +31,5 @@ int main() {
     std::cout << "Triangle: " << triangle.getSidesCount() << std::endl;
     std::cout << "Quadrangle: " << quad.getSidesCount() << std::endl;
 
-    return 0;
+    return EXIT_SUCCESS;
 }
