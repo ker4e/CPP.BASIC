@@ -177,4 +177,6 @@ int main() {
     printInfo(new Square(7));
     printInfo(new Parallelogram(4, 6, 60, 120));
     printInfo(new Rhombus(5, 60, 120));
+
+    return EXIT_SUCCESS;
 }
